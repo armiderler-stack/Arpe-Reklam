@@ -38,6 +38,24 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Admin tarafından pasif yapılan kullanıcıları engelle: oturumu kapat
+  // ve bir daha panele giremesin diye login sayfasına gönder.
+  if (isProtected && user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("is_active")
+      .eq("id", user.id)
+      .single();
+
+    if (profile && profile.is_active === false) {
+      await supabase.auth.signOut();
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set("deactivated", "1");
+      return NextResponse.redirect(url);
+    }
+  }
+
   return response;
 }
 

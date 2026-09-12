@@ -43,10 +43,21 @@ export async function loginAction(
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) {
+  if (error || !data.user) {
     return { error: "Giriş başarısız. Bilgilerinizi kontrol edin." };
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("is_active")
+    .eq("id", data.user.id)
+    .single();
+
+  if (profile && profile.is_active === false) {
+    await supabase.auth.signOut();
+    return { error: "Hesabınız yönetici tarafından pasif hale getirildi." };
   }
 
   redirect("/dashboard");

@@ -1,10 +1,22 @@
 "use client";
 
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { loginAction, type ActionResult } from "@/lib/actions/auth";
 import Button from "@/components/Button";
 import FormError from "@/components/FormError";
+
+function DeactivatedNotice() {
+  const searchParams = useSearchParams();
+  const isDeactivated = searchParams.get("deactivated") === "1";
+  if (!isDeactivated) return null;
+  return (
+    <p className="mt-4 rounded-lg bg-danger/10 px-3 py-2 text-sm text-danger">
+      Hesabınız yönetici tarafından pasif hale getirildi.
+    </p>
+  );
+}
 
 export default function LoginPage() {
   const [state, formAction] = useActionState<ActionResult, FormData>(
@@ -22,6 +34,10 @@ export default function LoginPage() {
         <p className="mt-1 text-sm text-muted">
           İşletmelerinizi yönetmek için hesabınıza girin.
         </p>
+
+        <Suspense fallback={null}>
+          <DeactivatedNotice />
+        </Suspense>
 
         <form action={formAction} className="mt-6 flex flex-col gap-3">
           <input
