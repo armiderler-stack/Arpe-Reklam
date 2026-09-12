@@ -19,7 +19,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <header className="mx-auto flex max-w-5xl items-center justify-between px-5 py-6">
-        <span className="font-display text-xl font-semibold">ARON</span>
+        <span className="font-display text-xl font-semibold">ARPE REKLAM</span>
         <nav className="flex items-center gap-4 text-sm">
           <Link href="/login" className="text-muted hover:text-ink">
             Giriş yap
@@ -65,8 +65,8 @@ export default function LandingPage() {
           <div className="rounded-[2rem] border border-line bg-panel p-4 shadow-sm">
             <div className="rounded-2xl bg-paper p-6 text-center">
               <div className="mx-auto mb-3 h-14 w-14 rounded-xl bg-accent/10" />
-              <p className="font-display font-semibold">ABC RESTAURANT</p>
-              <p className="mt-1 text-xs text-muted">Şehrin en iyi lezzetleri</p>
+              <p className="font-display font-semibold">X İŞLETME ADI</p>
+              <p className="mt-1 text-xs text-muted">Kısa açıklama buraya gelir</p>
               <div className="mt-5 flex flex-col gap-2">
                 {["WhatsApp", "Google Haritalar", "Instagram", "Menüyü Gör"].map(
                   (label) => (
@@ -96,7 +96,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="mx-auto max-w-5xl px-5 py-10 text-center text-sm text-muted">
-        © {new Date().getFullYear()} ARON
+        © {new Date().getFullYear()} ARPE REKLAM
       </footer>
     </div>
   );

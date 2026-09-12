@@ -10,6 +10,7 @@ export type LinkType =
   | "facebook"
   | "phone"
   | "email"
+  | "iban"
   | "custom";
 
 export interface LinkTypeConfig {
@@ -32,6 +33,7 @@ export const LINK_TYPES: LinkTypeConfig[] = [
   { type: "facebook", label: "Facebook", icon: "📘", placeholder: "https://facebook.com/sayfa" },
   { type: "phone", label: "Telefon", icon: "📞", placeholder: "905XXXXXXXXX", urlPrefix: "tel:" },
   { type: "email", label: "E-posta", icon: "✉️", placeholder: "ornek@eposta.com", urlPrefix: "mailto:" },
+  { type: "iban", label: "IBAN", icon: "🏦", placeholder: "TR00 0000 0000 0000 0000 0000 00" },
   { type: "custom", label: "Özel Bağlantı", icon: "🔗", placeholder: "https://..." },
 ];
 

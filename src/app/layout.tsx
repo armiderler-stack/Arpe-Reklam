@@ -14,7 +14,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "ARON — İşletmeniz için tek kart, sınırsız bağlantı",
+  title: "ARPE REKLAM — İşletmeniz için tek kart, sınırsız bağlantı",
   description: "NFC kartla işletmenizin tüm bağlantılarını tek sayfada toplayın.",
 };
 

@@ -28,7 +28,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-paper px-4">
       <div className="w-full max-w-sm">
         <Link href="/" className="font-display text-xl font-semibold text-ink">
-          ARON
+          ARPE REKLAM
         </Link>
         <h1 className="mt-6 text-2xl font-semibold text-ink">Giriş yap</h1>
         <p className="mt-1 text-sm text-muted">
@@ -54,6 +54,11 @@ export default function LoginPage() {
             placeholder="Şifre"
             className="rounded-lg border border-line bg-panel px-3 py-2.5 text-sm outline-none focus:border-accent"
           />
+          <div className="text-right">
+            <Link href="/forgot-password" className="text-sm text-accent hover:underline">
+              Şifremi unuttum
+            </Link>
+          </div>
           <FormError message={state.error} />
           <Button type="submit" fullWidth>
             Giriş yap

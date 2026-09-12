@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 
 export interface ActionResult {
   error?: string;
+  success?: boolean;
 }
 
 export async function registerAction(
@@ -67,4 +68,24 @@ export async function logoutAction() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/login");
+}
+
+export async function requestPasswordResetAction(
+  _prev: ActionResult,
+  formData: FormData
+): Promise<ActionResult> {
+  const email = String(formData.get("email") || "").trim();
+  if (!email) return { error: "E-posta gerekli." };
+
+  const supabase = await createClient();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${siteUrl}/reset-password`,
+  });
+
+  if (error) {
+    return { error: "Bir sorun oluştu: " + error.message };
+  }
+
+  return { success: true };
 }

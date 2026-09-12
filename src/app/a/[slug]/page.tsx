@@ -56,7 +56,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const data = await getData(slug);
-  if (!data) return { title: "ARON" };
+  if (!data) return { title: "ARPE REKLAM" };
   return {
     title: data.business.name,
     description: data.business.description ?? undefined,
@@ -123,7 +123,7 @@ export default async function BusinessPage({
           )}
         </div>
 
-        <p className="mt-10 text-center text-xs text-muted">Powered by ARON</p>
+        <p className="mt-10 text-center text-xs text-muted">Powered by ARPE REKLAM</p>
       </div>
     </div>
   );
